@@ -19,8 +19,14 @@
 #    along with PAM-ACCESSCONTROL.  If not, see <http://www.gnu.org/licenses/>.
 
 import subprocess as sp
-import os, sys, re, glob, shutil, distro, socket
+import os, sys, re, glob, shutil, socket
 
+def import_or_install(distro):
+  try:
+    __import__(distro)
+  except ImportError:
+    pip.main(['install', distro])
+    
 VERSION = "v0.98 Beta"
 PATH_PAM = "/etc/pam.d/"
 
